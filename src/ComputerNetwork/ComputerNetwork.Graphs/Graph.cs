@@ -18,9 +18,9 @@ namespace ComputerNetwork.Graphs
         private double[,] _adjacencyTable { get; }
 
         public double this[int from, int to] => _adjacencyTable[from, to];
-        public bool IsDirected { get; }
+        public bool IsDirected      { get; }
         public int NumberOfVertices { get; }
-        public int NumberOfEdges { get; }
+        public int NumberOfEdges    { get; }
 
         public bool IsConnected(int fromVertex, int toVertex) => !double.IsPositiveInfinity(_adjacencyTable[fromVertex, toVertex]);
 
