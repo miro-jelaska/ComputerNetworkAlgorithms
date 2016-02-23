@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace ComputerNetwork.Polynomials
+﻿namespace ComputerNetwork.Polynomials
 {
     public static class CrcAlgorithm
     {
