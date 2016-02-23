@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using FluentAssertions;
@@ -124,7 +125,7 @@ namespace ComputerNetwork.Polynomials
 
             var isCurrentLeadingNumberOne = left[currentDegreeForLeft];
             if (currentDegreeForLeft < right.Degree)
-                return Tuple.Create(new BinaryPolynomial(aggregatedResult.ToString()), new BinaryPolynomial(left.ToString()));
+                return Tuple.Create(new BinaryPolynomial(aggregatedResult.ToString()), left.Copy());
 
             if (isCurrentLeadingNumberOne)
             {
@@ -145,6 +146,72 @@ namespace ComputerNetwork.Polynomials
             right.Should().NotBeNull();
 
             return new BinaryPolynomial(left.Polynomial ^ right.Polynomial);
+        }
+
+        /*
+            The values for sum and hasCarriage are calulated by boolean function that was calculated
+            from Veitch diagram.
+            A = left, B = right, C1 = hasCarriage(current),
+            R = sum, C2 = hasCarriage (new)
+            +---+---+---++---+ ---+
+            | A | B | C || R | C2 |
+            |---+---+----++---+---|
+            | 0 | 0 | 0 || 0 | 0  |
+            | 0 | 0 | 1 || 1 | 0  |
+            | 0 | 1 | 0 || 1 | 0  |
+            | 0 | 1 | 1 || 0 | 1  |
+            | 1 | 0 | 0 || 1 | 0  |
+            | 1 | 0 | 1 || 0 | 1  |
+            | 1 | 1 | 0 || 0 | 1  |
+            | 1 | 1 | 1 || 1 | 1  |
+            |---+---+---++---+----|
+
+            Veitch table for sum:
+                 A
+                ___
+               +-------+
+            B ||0|1|0|1|
+               |--------
+               |1|0|1|0|
+               +-------+
+                  ___
+                   C
+            Boolean function for sum: R=A*!B*!C + A*B*C + !A*!B*C + !A*B*!C
+
+            Veitch table for hasCarriage:
+                 A
+                ___
+               +-------+
+            B ||1|1|1|0|
+               |--------
+               |0|1|0|0|
+               +-------+
+                  ___
+                   C
+            Boolean function for hasCarriage: C2 = AB + AC + BC
+        */
+        public static BinaryPolynomial operator +(BinaryPolynomial left, BinaryPolynomial right)
+        {
+            left.Should().NotBeNull();
+            right.Should().NotBeNull();
+
+            var hasCarriage = false;
+            var sum = new BinaryPolynomial();
+            for (var degree = 1; degree <= MaxDegree; degree++)
+            {
+                sum[degree] =
+                     left[degree] && !right[degree] && !hasCarriage ||
+                     left[degree] &&  right[degree] &&  hasCarriage ||
+                    !left[degree] && !right[degree] &&  hasCarriage ||
+                    !left[degree] &&  right[degree] && !hasCarriage;
+                
+                hasCarriage =
+                    left[degree]  && right[degree] ||
+                    left[degree]  && hasCarriage   ||
+                    right[degree] && hasCarriage;
+            }
+
+            return sum;
         }
 
         public override string ToString() => Convert.ToString(this.Polynomial, 2);

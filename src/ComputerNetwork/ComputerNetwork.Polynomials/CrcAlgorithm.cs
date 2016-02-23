@@ -11,22 +11,7 @@ namespace ComputerNetwork.Polynomials
             var polynomialWithPaddingShift = polynomial.Copy().RiseDegree(Padding);
             var divisionResult = BinaryPolynomial.Division(polynomialWithPaddingShift, GeneratorPolynomial);
 
-            divisionResult.Item2
-                .ToString()
-                .ToCharArray()
-                .Reverse()
-                .Zip(
-                    second: Enumerable.Range(0, Padding),
-                    resultSelector: (character, index) => new {character, index})
-                .Aggregate(
-                    seed: polynomialWithPaddingShift,
-                    func: (aggregate, current) =>
-                    {
-                        aggregate[current.index + 1] = (current.character == '1');
-                        return aggregate;
-                    });
-
-            return polynomialWithPaddingShift;
+            return polynomialWithPaddingShift + divisionResult.Item2;
         }
         public static bool IsCrcValid(BinaryPolynomial polynomialForCheck)
         {

@@ -17,10 +17,10 @@ namespace ComputerNetwork.Graphs
         }
         private Graph _graph { get; }
 
-        public bool IsDirected { get; }
-        public int NumberOfVertices { get; }
-        public int NumberOfEdges { get; }
-        public List<bool> IsVisited { get; }
+        public bool IsDirected       { get; }
+        public int  NumberOfVertices { get; }
+        public int  NumberOfEdges    { get; }
+        public List<bool>   IsVisited          { get; }
         public List<double> CalculatedDistance { get; }
 
         public List<int> Verteces => Enumerable.Range(0, NumberOfVertices).ToList();

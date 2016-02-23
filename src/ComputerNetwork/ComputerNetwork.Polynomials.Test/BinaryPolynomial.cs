@@ -180,6 +180,7 @@ namespace ComputerNetwork.Polynomials.Test
                 polynomial.RiseDegree(riseDifference).Polynomial.Should().Be((uint)expecting);
             }
         }
+
         [TestFixture]
         public class operator_XOR
         {
@@ -203,6 +204,43 @@ namespace ComputerNetwork.Polynomials.Test
                 var xorResult = a ^ b;
 
                 xorResult.Should().Be(expectingResult);
+            }
+        }
+
+        [TestFixture]
+        public class operator_Sum
+        {
+            [Test]
+            public void SimpleSumTest()
+            {
+                var a = new Polynomials.BinaryPolynomial("100");
+                var b = new Polynomials.BinaryPolynomial("  1");
+                var expectingResult = new Polynomials.BinaryPolynomial("101");
+                var sumResult = a ^ b;
+
+                sumResult.Should().Be(expectingResult);
+            }
+
+            [Test]
+            public void SumTest2()
+            {
+                var a = new Polynomials.BinaryPolynomial("011");
+                var b = new Polynomials.BinaryPolynomial("110");
+                var expectingResult = new Polynomials.BinaryPolynomial("1001");
+                var sumResult = a + b;
+
+                sumResult.Should().Be(expectingResult);
+            }
+
+            [Test]
+            public void SumTest3()
+            {
+                var a = new Polynomials.BinaryPolynomial("11");
+                var b = new Polynomials.BinaryPolynomial("11");
+                var expectingResult = new Polynomials.BinaryPolynomial("110");
+                var sumResult = a + b;
+
+                sumResult.Should().Be(expectingResult);
             }
         }
 
