@@ -17,9 +17,24 @@ It comprises of following data structures:
 
   
   
-And it has following algorithm implementations:
+Algorithm implementations:
 
 :mag_right: | Algorithm
 --- | ---
 [<>](https://github.com/MiroslavJelaska/Faculty_ComputerNetworkAlgorithms/blob/master/src/ComputerNetwork/ComputerNetwork.Graphs/DijkstraAlgorithm.cs "Source") | Dijkstra
 [<>](https://github.com/MiroslavJelaska/Faculty_ComputerNetworkAlgorithms/blob/master/src/ComputerNetwork/ComputerNetwork.Graphs/BellmanFordAlgorithm.cs "Source") | BellmanFord
+
+## Polynomials and CRC algorithm
+It comprises of following data structures:
+  
+:mag_right: | Data structure | Description
+--- | --- | ---
+[<>](https://github.com/MiroslavJelaska/Faculty_ComputerNetworkAlgorithms/blob/master/src/ComputerNetwork/ComputerNetwork.Polynomials/DecimalMonomial.cs "Source") | DecimalMonomial | This class represents one part of the Polynomial. This is not an mathematical but artificial structure which is essential building block of Polynomials. In this polynomial _4x^3 + 2x - 1_ monomials are [4x^3, 2x, -1].
+[<>](https://github.com/MiroslavJelaska/Faculty_ComputerNetworkAlgorithms/blob/master/src/ComputerNetwork/ComputerNetwork.Polynomials/DecimalPolynomial.cs "Source") | DecimalPolynomial | Represents decimal polynomial internaly build out of DecimalMonomials. It makes addition, multiplication, comparison, ... among decimal polynomials easy.
+[<>](https://github.com/MiroslavJelaska/Faculty_ComputerNetworkAlgorithms/blob/master/src/ComputerNetwork/ComputerNetwork.Polynomials/BinaryPolynomial%20.cs "Source") | BinaryPolynomial | Represents binary polynomial internaly using one _uint_ to hold polynomial. It makes addition, division, comparison, ... among binary polynomials easy.
+
+Algorithm implementations:
+
+:mag_right: | Algorithm
+--- | ---
+[<>](https://github.com/MiroslavJelaska/Faculty_ComputerNetworkAlgorithms/blob/master/src/ComputerNetwork/ComputerNetwork.Polynomials/CrcAlgorithm.cs "Source") | CrcAlgorithm
