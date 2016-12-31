@@ -1,5 +1,5 @@
 # Faculty_ComputerNetworkAlgorithms
-Project that was created as part of course on Computer networks on faculty.
+Project that I created as part of course on Computer networks on faculty.
 It can be devided into two parts:
 * Graphs and shortest path algorithms
 * Polynomials and CRC algorithm
