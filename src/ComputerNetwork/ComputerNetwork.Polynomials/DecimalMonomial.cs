@@ -4,7 +4,7 @@ using FluentAssertions;
 namespace ComputerNetwork.Polynomials
 {
     /// <summary>
-    /// This class reprezents one part of the Polynomial.
+    /// This class represents one part of the Polynomial.
     /// This is not an mathematical but artificial structure which is essential building block of Polynomials.
     /// </summary>
     /// <example> 
