@@ -12,13 +12,13 @@ namespace ComputerNetwork.Polynomials
 
         /// <summary>
         /// Constructs a polynomial from its coefficients.
-        /// <example> 
+        /// </summary>
+        /// <example>
         /// For the string
         /// "1011"
         /// polynomial is
         /// x^3 + x + 1
         /// </example>
-        /// </summary>
         public BinaryPolynomial(string polynomialAsString)
         {
             polynomialAsString.Should().NotBeNullOrEmpty();

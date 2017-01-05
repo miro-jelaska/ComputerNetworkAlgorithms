@@ -11,13 +11,13 @@ namespace ComputerNetwork.Polynomials
         /// <summary>
         /// Constructs a polynomial from space separated coefficients. 
         /// Each number represents a monomial in exact order where 0 stands for the missing monomial.
+        /// </summary>
         /// <example> 
         /// For string
         /// "4 0 2 -1"
         /// polynomial is
         /// 4x^3 + 2x - 1
         /// </example>
-        /// </summary>
         public DecimalPolynomial(string separatedCoefficient) : this()
         {
             var getNextDegree = ((Func<Func<int>>)(() => {
@@ -128,12 +128,12 @@ namespace ComputerNetwork.Polynomials
         /// Inserts missing imaginary monomials and orders monomials.
         /// Imaginary monomials are those monomials which have value of 0.
         /// Imaginary monomials simplify impelementation of operations over polynomials.
+        /// </summary>
         /// <example> 
         /// For polynomial
         /// 4x^3 + 2x - 1
         /// imaginary monomials are 0x^2 and 0x.
         /// </example>
-        /// </summary>
         public void Normalize()
         {
             this.Polynomials =
@@ -148,13 +148,13 @@ namespace ComputerNetwork.Polynomials
 
         /// <summary>
         /// Removes leading zero monomials.
+        /// </summary>
         /// <example> 
         /// For polynomial
         /// 0x^3 + 5x^2 + 7x - 1
         /// leading zero monomial is 0x^3. After trimming polynomial is equal
         /// 5x^2 + 7x - 1
         /// </example>
-        /// </summary>
         public void TrimLeadingZeroMonomials()
         {
             this.Polynomials = this.Polynomials.Take(this.Polynomials.FindLastIndex(monomial => monomial.Value != 0) + 1).ToList();
