@@ -169,7 +169,7 @@ namespace ComputerNetwork.Polynomials
                 ___
                +-------+
             B ||0|1|0|1|
-               |--------
+               |-------|
                |1|0|1|0|
                +-------+
                   ___
@@ -181,7 +181,7 @@ namespace ComputerNetwork.Polynomials
                 ___
                +-------+
             B ||1|1|1|0|
-               |--------
+               |-------|
                |0|1|0|0|
                +-------+
                   ___

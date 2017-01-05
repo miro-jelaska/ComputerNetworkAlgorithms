@@ -21,7 +21,6 @@ namespace ComputerNetwork.Polynomials
         public DecimalPolynomial(string separatedCoefficient) : this()
         {
             var getNextDegree = ((Func<Func<int>>)(() => {
-
                 var nextDegree = 1;
                 return () => nextDegree++;
             }))();
