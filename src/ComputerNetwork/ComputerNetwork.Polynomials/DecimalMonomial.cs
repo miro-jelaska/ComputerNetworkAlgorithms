@@ -4,20 +4,19 @@ using FluentAssertions;
 namespace ComputerNetwork.Polynomials
 {
     /// <summary>
-    /// This class represents one part of the Polynomial.
-    /// This is not an mathematical but artificial structure which is essential building block of Polynomials.
+    /// Represents one part of the polynomial.
     /// </summary>
     /// <example> 
-    /// In this polynomial
+    /// In the polynomial
     /// 4x^3 + 2x -1
     /// monomials are [4x^3, 2x, -1]
     /// </example>
     public class DecimalMonomial
     {
         /// <summary>
-        /// Constructs monomial.
+        /// Constructs a monomial.
         /// <example> 
-        /// E.g. for monomial
+        /// For the monomial
         /// 4x^3
         /// value is 4 and degree is 3
         /// </example>
