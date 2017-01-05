@@ -15,12 +15,12 @@ namespace ComputerNetwork.Polynomials
     {
         /// <summary>
         /// Constructs a monomial.
-        /// <example> 
+        /// </summary>
+        /// <example>
         /// For the monomial
         /// 4x^3
         /// value is 4 and degree is 3
         /// </example>
-        /// </summary>
         public DecimalMonomial(int value, int degree)
         {
             this.Value = value;
