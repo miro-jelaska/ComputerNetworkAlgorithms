@@ -9,18 +9,18 @@ namespace ComputerNetwork.Polynomials
     public class DecimalPolynomial
     {
         /// <summary>
-        /// Constructs polynomial from space separated coefficients. Each number represents monomial in exact order. For missing monomial place 0.
-        /// <example> 
-        /// E.g. for polynomial
-        /// 4x^3 + 2x - 1
-        /// string is
-        /// "4 0 2 -1"
-        /// </example>
+        /// Constructs a polynomial from space separated coefficients. 
+        /// Each number represents a monomial in exact order where 0 stands for the missing monomial.
         /// </summary>
+        /// <example> 
+        /// For string
+        /// "4 0 2 -1"
+        /// polynomial is
+        /// 4x^3 + 2x - 1
+        /// </example>
         public DecimalPolynomial(string separatedCoefficient) : this()
         {
             var getNextDegree = ((Func<Func<int>>)(() => {
-
                 var nextDegree = 1;
                 return () => nextDegree++;
             }))();
@@ -38,7 +38,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Constructs polynomial from list of monomials.
+        /// Constructs a polynomial from a list of monomials.
         /// </summary>
         public DecimalPolynomial(IEnumerable<DecimalMonomial> coefficients) : this()
         {
@@ -48,7 +48,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Constructs polynomial from existing polynomial.
+        /// Constructs a polynomial from an existing polynomial.
         /// </summary>
         public DecimalPolynomial(DecimalPolynomial copySource) : this()
         {
@@ -60,7 +60,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Constructs null polynomial.
+        /// Constructs a null polynomial.
         /// </summary>
         public DecimalPolynomial()
         {
@@ -70,7 +70,7 @@ namespace ComputerNetwork.Polynomials
         public List<DecimalMonomial> Polynomials { get; private set; }
 
         /// <summary>
-        /// Gets/sets value for monomial with selected degree.
+        /// Gets/sets value for the monomial of a selected degree.
         /// </summary>
         public DecimalMonomial this[int degree]
         {
@@ -79,13 +79,13 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Degree is defined as max degree value of monomials. For nullmonomial degree is 0.
+        /// Degree is defined as the maximum degree of a leading monomial. For the null monomial degree is 0.
         /// </summary>
         public int Degree => Polynomials.Any() ? Polynomials.Max(x => x.Degree) : 0;
         public bool IsNullPolynomial => this.Degree == 0;
 
         /// <summary>
-        /// Leading monomial is monomial with greatest degree.
+        /// Leading monomial is a monomial with the greatest degree.
         /// </summary>
         public DecimalMonomial LeadingMonomial => Polynomials.Last();
         public DecimalPolynomial AdditiveInverse => new DecimalPolynomial(Polynomials.Select(monomial => new DecimalMonomial(-1 * monomial.Value, monomial.Degree)));
@@ -125,14 +125,14 @@ namespace ComputerNetwork.Polynomials
 
         /// <summary>
         /// Inserts missing imaginary monomials and orders monomials.
-        /// Imaginary monomials are those which have value of 0.
-        /// Imaginary monomials simplify impelementation of operations over Polynomials.
+        /// Imaginary monomials are those monomials which have value of 0.
+        /// Imaginary monomials simplify impelementation of operations over polynomials.
+        /// </summary>
         /// <example> 
-        /// E.g. for polynomial
+        /// For polynomial
         /// 4x^3 + 2x - 1
         /// imaginary monomials are 0x^2 and 0x.
         /// </example>
-        /// </summary>
         public void Normalize()
         {
             this.Polynomials =
@@ -147,13 +147,13 @@ namespace ComputerNetwork.Polynomials
 
         /// <summary>
         /// Removes leading zero monomials.
+        /// </summary>
         /// <example> 
-        /// E.g. for polynomial
+        /// For polynomial
         /// 0x^3 + 5x^2 + 7x - 1
-        /// leading zero monomial is 0x^3. After trimming polynomial looks like
+        /// leading zero monomial is 0x^3. After trimming polynomial is equal
         /// 5x^2 + 7x - 1
         /// </example>
-        /// </summary>
         public void TrimLeadingZeroMonomials()
         {
             this.Polynomials = this.Polynomials.Take(this.Polynomials.FindLastIndex(monomial => monomial.Value != 0) + 1).ToList();
@@ -198,14 +198,14 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Divides left polynomial with right and returns tuple (result, rest).
+        /// Divides left polynomial with right and returns a tuple (result, rest).
         /// </summary>
         public static Tuple<DecimalPolynomial, DecimalPolynomial> Divide(DecimalPolynomial left, DecimalPolynomial right)
         {
             return Divide(left, right, new DecimalPolynomial());
         }
         /// <summary>
-        /// This method implements division trough recursion.
+        /// Implements division through recursion.
         /// </summary>
         private static Tuple<DecimalPolynomial, DecimalPolynomial> Divide(DecimalPolynomial left, DecimalPolynomial right, DecimalPolynomial accumulatedResult)
         {
@@ -223,7 +223,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Returns polynomials string representation.
+        /// Returns string representation of the polynomial.
         /// </summary>
         public override string ToString() =>
                 this.Polynomials.AsEnumerable()
@@ -234,7 +234,8 @@ namespace ComputerNetwork.Polynomials
                 .ToString();
 
         /// <summary>
-        /// Two polynomials are equal if all of their monomials are equal.
+        /// Checks if two polynomials are equal.
+        /// Two polynomials are equal iff all of their monomials are equal.
         /// </summary>
         public override bool Equals(object obj)
         {

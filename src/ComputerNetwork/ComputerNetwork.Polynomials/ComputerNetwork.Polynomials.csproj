@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryPolynomial .cs" />
+    <Compile Include="BinaryPolynomial.cs" />
     <Compile Include="CrcAlgorithm.cs" />
     <Compile Include="DecimalMonomial.cs" />
     <Compile Include="DecimalPolynomial.cs" />

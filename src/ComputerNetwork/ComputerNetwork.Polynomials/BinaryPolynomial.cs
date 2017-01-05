@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using FluentAssertions;
@@ -12,14 +11,14 @@ namespace ComputerNetwork.Polynomials
         public static int MaxDegree => (int)Math.Floor(Math.Log(uint.MaxValue, 2)) + 1;
 
         /// <summary>
-        /// Constructs polynomial from coefficients.
-        /// <example> 
-        /// E.g. for polynomial
-        /// x^3 + x + 1
-        /// string is
-        /// "1011"
-        /// </example>
+        /// Constructs a polynomial from its coefficients.
         /// </summary>
+        /// <example>
+        /// For the string
+        /// "1011"
+        /// polynomial is
+        /// x^3 + x + 1
+        /// </example>
         public BinaryPolynomial(string polynomialAsString)
         {
             polynomialAsString.Should().NotBeNullOrEmpty();
@@ -40,7 +39,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Constructs polynomial from existing polynomial.
+        /// Constructs a polynomial from an existing polynomial.
         /// </summary>
         public BinaryPolynomial(BinaryPolynomial copySource)
         {
@@ -48,7 +47,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Constructs polynomial from uint representing polynomial.
+        /// Constructs a polynomial from uint representing polynomial.
         /// </summary>
         public BinaryPolynomial(uint polynomial)
         {
@@ -56,7 +55,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Constructs null polynomial.
+        /// Constructs a null polynomial.
         /// </summary>
         public BinaryPolynomial()
         {
@@ -64,7 +63,7 @@ namespace ComputerNetwork.Polynomials
         }
 
         /// <summary>
-        /// Gets/sets value for monomial with selected degree.
+        /// Gets/sets value for the monomial of a selected degree.
         /// </summary>
         public bool this[int degree]
         {
@@ -89,12 +88,12 @@ namespace ComputerNetwork.Polynomials
         public bool IsNullPolynomial => this.Polynomial == 0;
 
         /// <summary>
-        /// Degree is defined as max degree of leading monomial. For nullmonomial degree is 0.
+        /// Degree is defined as the maximum degree of a leading monomial. For the null monomial degree is 0.
         /// </summary>
         public int Degree => !this.IsNullPolynomial ? (int) Math.Floor(Math.Log(this.Polynomial, 2)) + 1 : 0;
 
         /// <summary>
-        /// Rises degree of all monomials for degreeDifference by bit shifing polynomial to the right.
+        /// Rises degree of all monomials for degreeDifference by bit shifting polynomial to the right.
         /// </summary>
         public BinaryPolynomial RiseDegree(int degreeDifference)
         {
@@ -109,14 +108,14 @@ namespace ComputerNetwork.Polynomials
         public BinaryPolynomial Copy() => new BinaryPolynomial(this);
 
         /// <summary>
-        /// Divides left polynomial with right and returns tuple (result, rest).
+        /// Divides left polynomial with right and returns a tuple (result, rest).
         /// </summary>
         public static Tuple<BinaryPolynomial, BinaryPolynomial> Division(BinaryPolynomial left, BinaryPolynomial right)
         {
             return Division(left.Copy(), right, left.Degree, new StringBuilder());
         }
         /// <summary>
-        /// This method implements division trough recursion.
+        /// Implements division through recursion.
         /// </summary>
         public static Tuple<BinaryPolynomial, BinaryPolynomial> Division(BinaryPolynomial left, BinaryPolynomial right, int currentDegreeForLeft, StringBuilder aggregatedResult)
         {
@@ -149,9 +148,8 @@ namespace ComputerNetwork.Polynomials
         }
 
         /*
-            The values for sum and hasCarriage are calulated by boolean function that was calculated
-            from Veitch diagram.
-            A = left, B = right, C1 = hasCarriage(current),
+            The values for the sum and hasCarriage are calculated by a boolean function using Veitch diagram.
+            A = left, B = right, C1 = hasCarriage (current),
             R = sum, C2 = hasCarriage (new)
             +---+---+---++---+ ---+
             | A | B | C || R | C2 |
@@ -166,29 +164,29 @@ namespace ComputerNetwork.Polynomials
             | 1 | 1 | 1 || 1 | 1  |
             |---+---+---++---+----|
 
-            Veitch table for sum:
+            Veitch table for the sum:
                  A
                 ___
                +-------+
             B ||0|1|0|1|
-               |--------
+               |-------|
                |1|0|1|0|
                +-------+
                   ___
                    C
-            Boolean function for sum: R=A*!B*!C + A*B*C + !A*!B*C + !A*B*!C
+            Boolean function for the sum: R = A*!B*!C + A*B*C + !A*!B*C + !A*B*!C
 
             Veitch table for hasCarriage:
                  A
                 ___
                +-------+
             B ||1|1|1|0|
-               |--------
+               |-------|
                |0|1|0|0|
                +-------+
                   ___
                    C
-            Boolean function for hasCarriage: C2 = AB + AC + BC
+            Boolean function for hasCarriage: C2 = A*B + A*C + B*C
         */
         public static BinaryPolynomial operator +(BinaryPolynomial left, BinaryPolynomial right)
         {
