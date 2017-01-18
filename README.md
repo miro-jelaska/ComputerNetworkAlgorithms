@@ -1,5 +1,6 @@
 # Faculty_ComputerNetworkAlgorithms
-Project that I created as part of course on Computer networks on faculty.
+Graph ADT and shortest path algorithms + Polynomials ADT and CRC algorithm. Project that I created as part of course on Computer networks on faculty. I wanted to make an useful abstraction of graphs and polynomials so that algorithm implementations would be lightweight (e.g. I don't think that CRC algorithm should know how polynomial division is done. It should only ask for division and Polynomial ADT should take care of the rest.)
+
 It can be devided into two parts:
 * Graphs and shortest path algorithms
 * Polynomials and CRC algorithm
