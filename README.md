@@ -5,6 +5,10 @@ It can be devided into two parts:
 * Graphs and shortest path algorithms
 * Polynomials and CRC algorithm
 
+Have some questions or want to give a feedback? You can send me a <a href="mailto:mjelaska.public@gmail.com">an email ✉️</a>
+
+**NOTE:** Do you like it? Show it by giving a ⭐️. 🚀
+
 ## Graphs and shortest path algorithms
 It comprises of following data structures:
   
